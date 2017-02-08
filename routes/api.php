@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Equipment;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/equipment', function (Request $request) {
+    return Response::json(Equipment::all(), 200, array(), JSON_PRETTY_PRINT);
+});
+
+Route::get('/equipment/{id}', function ($id) {
+    return Response::json(Equipment::findOrFail($id), 200, array(), JSON_PRETTY_PRINT);
 });

@@ -45,7 +45,11 @@
         ],
         "up": [
           "composer install",
-          "./vendor/bin/homestead make",
+          "npm install",
+          "./vendor/bin/homestead make --ip=192.168.10.12",
+          "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+          "php artisan key:generate",
+          "php artisan vendor:publish",
           "vagrant up"
         ]
     },
