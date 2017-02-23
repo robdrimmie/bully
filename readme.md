@@ -38,3 +38,9 @@ You can update your `/etc/hosts` file to add a name to your service:
 ```
 
 Then you can point your browser to http://starter.dozr.dev
+
+You can start the dev server to automatically rebuild the project when files are changed.
+```
+npm run dev 
+```
+
