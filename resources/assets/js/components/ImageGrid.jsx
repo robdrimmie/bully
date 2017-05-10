@@ -8,9 +8,9 @@ const ImageGrid = React.createClass({
   },
 
   render () {
-    const images = this.props.links.map((link) => {
+    const images = this.props.links.map((link, i) => {
       return (
-        <div className="fl-ns w-50-ns pa3">
+        <div key={i} className="fl-ns w-50-ns pa3">
           <img src={`/images/${link}`} />
         </div>
       );
