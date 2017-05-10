@@ -3796,36 +3796,29 @@ code,
 */
 .link {
   text-decoration: none;
-  -webkit-transition: color 150ms ease;
   transition: color 150ms ease;
 }
 .link:link,
 .link:visited {
-  -webkit-transition: color 150ms ease;
   transition: color 150ms ease;
 }
 .link:hover {
-  -webkit-transition: color 150ms ease;
   transition: color 150ms ease;
 }
 .link:active {
-  -webkit-transition: color 150ms ease;
   transition: color 150ms ease;
 }
 .link:focus {
-  -webkit-transition: color 150ms ease;
   transition: color 150ms ease;
   outline: 1px dotted currentColor;
 }
 .link-underline {
   text-decoration: none;
-  -webkit-transition: _text-decoration 150ms ease;
   transition: _text-decoration 150ms ease;
 }
 .link-underline:hover,
 .link-underline:focus {
   text-decoration: underline;
-  -webkit-transition: text-decoration 150ms ease;
   transition: text-decoration 150ms ease;
 }
 /*
@@ -7351,18 +7344,15 @@ code,
 */
 .dim {
   opacity: 1;
-  -webkit-transition: opacity 150ms ease;
   transition: opacity 150ms ease;
 }
 .dim:hover,
 .dim:focus {
   opacity: .5;
-  -webkit-transition: opacity 150ms ease;
   transition: opacity 150ms ease;
 }
 .dim:active {
   opacity: .8;
-  -webkit-transition: opacity 150ms easet;
   transition: opacity 150ms easet;
 }
 /*
@@ -7371,13 +7361,11 @@ code,
 
 */
 .glow {
-  -webkit-transition: opacity 150ms ease;
   transition: opacity 150ms ease;
 }
 .glow:hover,
 .glow:focus {
   opacity: 1;
-  -webkit-transition: opacity 150ms ease;
   transition: opacity 150ms ease;
 }
 /*
@@ -7396,14 +7384,12 @@ code,
 */
 .hide-child .child {
   opacity: 0;
-  -webkit-transition: opacity 150ms ease;
   transition: opacity 150ms ease;
 }
 .hide-child:hover .child,
 .hide-child:focus .child,
 .hide-child:active .child {
   opacity: 1;
-  -webkit-transition: opacity 150ms ease;
   transition: opacity 150ms ease;
 }
 .underline-hover:hover,
@@ -7418,7 +7404,6 @@ code,
   backface-visibility: hidden;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-transition: -webkit-transform 150ms ease-out;
   transition: -webkit-transform 150ms ease-out;
   transition: transform 150ms ease-out;
   transition: transform 150ms ease-out, -webkit-transform 150ms ease-out;
@@ -7438,7 +7423,6 @@ code,
   backface-visibility: hidden;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-transition: -webkit-transform 0.25s ease-in-out;
   transition: -webkit-transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out;
   transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
@@ -7465,7 +7449,6 @@ code,
 .shadow-hover {
   cursor: pointer;
   position: relative;
-  -webkit-transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .shadow-hover::after {
@@ -7478,7 +7461,6 @@ code,
   width: 100%;
   height: 100%;
   z-index: -1;
-  -webkit-transition: opacity 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: opacity 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .shadow-hover:hover::after,
@@ -7490,7 +7472,6 @@ code,
 .bg-animate,
 .bg-animate:hover,
 .bg-animate:focus {
-  -webkit-transition: background-color 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out;
 }
 .view-listing {
@@ -7518,7 +7499,6 @@ code,
 .view-listing:hover,
 .view-listing:focus {
   opacity: 1;
-  -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
 }
 .gold--hover:hover,
@@ -7526,7 +7506,6 @@ code,
   color: #ac9456;
 }
 .primary--hover {
-  -webkit-transition: background-color 250ms ease;
   transition: background-color 250ms ease;
 }
 .primary--hover:hover,
@@ -7534,7 +7513,6 @@ code,
   background-color: #80de1a;
 }
 .primary-black--hover {
-  -webkit-transition: background-color 250ms ease;
   transition: background-color 250ms ease;
 }
 .primary-black--hover:hover,
@@ -7542,7 +7520,6 @@ code,
   background-color: #42413c;
 }
 .primary-green-hover {
-  -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
 }
 .primary-green-hover:hover,
@@ -7554,7 +7531,6 @@ code,
   color: #000000;
 }
 .secondary-green-hover {
-  -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
 }
 .secondary-green-hover:hover,
@@ -7563,7 +7539,6 @@ code,
   color: #fff;
 }
 .primary-gold-hover {
-  -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
 }
 .primary-gold-hover:hover,
@@ -7572,7 +7547,6 @@ code,
   color: #fff;
 }
 .secondary-gold-hover {
-  -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
 }
 .secondary-gold-hover:hover,
@@ -7691,13 +7665,11 @@ code,
 }
 .nested-links a {
   color: var(--blue);
-  -webkit-transition: color 0.15s ease-in;
   transition: color 0.15s ease-in;
 }
 .nested-links a:hover,
 .nested-links a:focus {
   color: var(--light-blue);
-  -webkit-transition: color 0.15s ease-in;
   transition: color 0.15s ease-in;
 }
 /* Variables */
