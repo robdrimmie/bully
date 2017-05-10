@@ -33,6 +33,7 @@
   "main": "app.js",
   "dependencies": {
     "lodash": "^4.17.4",
+    "prop-types": "^15.5.9",
     "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.4.1",
     "react-dom": "^15.4.1",

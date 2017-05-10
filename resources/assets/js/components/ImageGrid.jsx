@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const { array } = React.PropTypes;
+const { array } = PropTypes;
 
 const ImageGrid = ({ links }) => {
   const images = links.map((link, i) => {
