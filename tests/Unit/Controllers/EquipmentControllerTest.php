@@ -15,7 +15,12 @@ class EquipmentControllerTest extends TestCase
      */
     public function testIndex()
     {
-        $this->assertTrue(false);
+        $response = $this->get(route('equipment.index'));
+
+        $response->assertStatus(200)
+            ->assertJson([
+                'id' => 1,
+            ]);
     }
 
     /**
@@ -25,7 +30,8 @@ class EquipmentControllerTest extends TestCase
      */
     public function testCreate()
     {
-        $this->assertTrue(false);
+        $response = $this->get(route('equipment.create'));
+        $response->assertStatus(200);
     }
 
     /**
@@ -35,7 +41,8 @@ class EquipmentControllerTest extends TestCase
      */
     public function testStore()
     {
-        $this->assertTrue(false);
+        $response = $this->post(route('equipment.store'));
+        $response->assertStatus(200);
     }
 
     /**
@@ -43,9 +50,10 @@ class EquipmentControllerTest extends TestCase
      *
      * @return void
      */
-    public function show()
+    public function testShow()
     {
-        $this->assertTrue(false);
+        $response = $this->get(route('equipment.show', ['id' => 1]));
+        $response->assertStatus(200);
     }
 
     /**
@@ -53,9 +61,10 @@ class EquipmentControllerTest extends TestCase
      *
      * @return void
      */
-    public function edit()
+    public function testEdit()
     {
-        $this->assertTrue(false);
+        $response = $this->get(route('equipment.edit', ['id' => 1]));
+        $response->assertStatus(200);
     }
 
     /**
@@ -65,7 +74,8 @@ class EquipmentControllerTest extends TestCase
      */
     public function testUpdate()
     {
-        $this->assertTrue(false);
+        $response = $this->put(route('equipment.update', ['id' => 1]));
+        $response->assertStatus(200);
     }
 
     /**
@@ -75,6 +85,7 @@ class EquipmentControllerTest extends TestCase
      */
     public function testDestroy()
     {
-        $this->assertTrue(false);
+        $response = $this->delete(route('equipment.destroy', ['id' => 1]));
+        $response->assertStatus(200);
     }
 }
