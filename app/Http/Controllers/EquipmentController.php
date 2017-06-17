@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Equipment;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class EquipmentController extends Controller
 {
+    use DatabaseMigrations;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,7 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        //
+        return Equipment::all();
     }
 
     /**
@@ -35,7 +38,9 @@ class EquipmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Equipment::create($request->all());
+
+        return response('', 201);
     }
 
     /**
@@ -46,7 +51,7 @@ class EquipmentController extends Controller
      */
     public function show(Equipment $equipment)
     {
-        //
+        return $equipment;
     }
 
     /**
@@ -69,7 +74,13 @@ class EquipmentController extends Controller
      */
     public function update(Request $request, Equipment $equipment)
     {
-        //
+        $equipment->make = $request->has('make') ? $request->make : $equipment->make;
+        $equipment->model = $request->has('model') ? $request->model : $equipment->model;
+        $equipment->year = $request->has('year') ? $request->year : $equipment->year;
+        $equipment->picture = $request->has('picture') ? $request->picture : $equipment->picture;
+        $equipment->rate = $request->has('rate') ? $request->rate : $equipment->rate;
+
+        $equipment->save();
     }
 
     /**
@@ -80,6 +91,6 @@ class EquipmentController extends Controller
      */
     public function destroy(Equipment $equipment)
     {
-        //
+        $equipment->delete();
     }
 }

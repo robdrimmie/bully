@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Controllers;
 
+use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -18,9 +19,7 @@ class EquipmentControllerTest extends TestCase
         $response = $this->get(route('equipment.index'));
 
         $response->assertStatus(200)
-            ->assertJson([
-                'id' => 1,
-            ]);
+            ->assertJson([]);
     }
 
     /**
@@ -30,8 +29,9 @@ class EquipmentControllerTest extends TestCase
      */
     public function testCreate()
     {
-        $response = $this->get(route('equipment.create'));
-        $response->assertStatus(200);
+        $response = $this->get(route('equipment.create'))
+            ->assertStatus(200);
+        $this->assertContains('Make', $response->getContent());
     }
 
     /**
@@ -41,8 +41,14 @@ class EquipmentControllerTest extends TestCase
      */
     public function testStore()
     {
-        $response = $this->post(route('equipment.store'));
-        $response->assertStatus(200);
+        $response = $this->post(route('equipment.store'), [
+            'make' => 'test make',
+            'model' => 'test model',
+            'year' => Carbon::createFromDate(2005,1,1),
+            'rate' => 2000,
+            'picture' => 'test.png',
+        ])->assertStatus(201);
+        $this->assertDatabaseHas('equipment', ['make' => 'test make']);
     }
 
     /**
@@ -52,8 +58,9 @@ class EquipmentControllerTest extends TestCase
      */
     public function testShow()
     {
-        $response = $this->get(route('equipment.show', ['id' => 1]));
-        $response->assertStatus(200);
+        $response = $this->get(route('equipment.show', ['id' => 1]))
+            ->assertStatus(200)
+            ->assertJson(['make' => 'Caterpillar']);
     }
 
     /**
@@ -63,8 +70,9 @@ class EquipmentControllerTest extends TestCase
      */
     public function testEdit()
     {
-        $response = $this->get(route('equipment.edit', ['id' => 1]));
-        $response->assertStatus(200);
+        $response = $this->get(route('equipment.edit', ['id' => 1]))
+            ->assertStatus(200);
+        $this->assertContains('Make', $response->getContent());
     }
 
     /**
@@ -74,8 +82,16 @@ class EquipmentControllerTest extends TestCase
      */
     public function testUpdate()
     {
-        $response = $this->put(route('equipment.update', ['id' => 1]));
-        $response->assertStatus(200);
+        $response = $this->put(
+            route('equipment.update', ['id' => 1]),
+            ['make' => 'Butterfly']
+        )->assertStatus(200);
+
+        $this->assertDatabaseHas('equipment', [
+            'id' => 1,
+            'make' => 'Butterfly'
+        ]);
+
     }
 
     /**
@@ -85,7 +101,9 @@ class EquipmentControllerTest extends TestCase
      */
     public function testDestroy()
     {
-        $response = $this->delete(route('equipment.destroy', ['id' => 1]));
-        $response->assertStatus(200);
+        $response = $this->delete(route('equipment.destroy', ['id' => 1]))
+            ->assertStatus(200);
+        
+        $this->assertDatabaseMissing('equipment', ['id' => 1]);
     }
 }
