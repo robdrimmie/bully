@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Equipment;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class EquipmentController extends Controller
 {
-    use DatabaseMigrations;
 
     /**
      * Display a listing of the resource.
@@ -18,16 +16,6 @@ class EquipmentController extends Controller
     public function index()
     {
         return Equipment::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -52,17 +40,6 @@ class EquipmentController extends Controller
     public function show(Equipment $equipment)
     {
         return $equipment;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Equipment  $equipment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Equipment $equipment)
-    {
-        //
     }
 
     /**

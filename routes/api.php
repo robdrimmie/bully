@@ -14,4 +14,6 @@ use App\Equipment;
 |
 */
 
-Route::resource('equipment', 'EquipmentController');
+Route::resource('equipment', 'EquipmentController', ['except' => [
+    'create', 'edit'
+]]);

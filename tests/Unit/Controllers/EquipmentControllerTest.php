@@ -9,6 +9,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class EquipmentControllerTest extends TestCase
 {
+    use DatabaseTransactions;
+
     /**
      * Test resource listing
      *
@@ -20,18 +22,6 @@ class EquipmentControllerTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJson([]);
-    }
-
-    /**
-     * Test show the form for creating a new resource.
-     *
-     * @return void
-     */
-    public function testCreate()
-    {
-        $response = $this->get(route('equipment.create'))
-            ->assertStatus(200);
-        $this->assertContains('Make', $response->getContent());
     }
 
     /**
@@ -64,33 +54,21 @@ class EquipmentControllerTest extends TestCase
     }
 
     /**
-     * Test showing the form for editing the specified resource.
-     *
-     * @return void
-     */
-    public function testEdit()
-    {
-        $response = $this->get(route('equipment.edit', ['id' => 1]))
-            ->assertStatus(200);
-        $this->assertContains('Make', $response->getContent());
-    }
-
-    /**
      * Test updating the specified resource in storage.
      *
      * @return void
      */
     public function testUpdate()
     {
+        $toUpdate = ['id' => 1];
+        $newValue = ['make' => 'Butterfly'];
+
         $response = $this->put(
-            route('equipment.update', ['id' => 1]),
-            ['make' => 'Butterfly']
+            route('equipment.update', $toUpdate),
+            $newValue
         )->assertStatus(200);
 
-        $this->assertDatabaseHas('equipment', [
-            'id' => 1,
-            'make' => 'Butterfly'
-        ]);
+        $this->assertDatabaseHas('equipment', array_merge($toUpdate, $newValue));
 
     }
 
@@ -101,9 +79,11 @@ class EquipmentControllerTest extends TestCase
      */
     public function testDestroy()
     {
-        $response = $this->delete(route('equipment.destroy', ['id' => 1]))
+        $toDelete = ['id' => 1];
+
+        $response = $this->delete(route('equipment.destroy', $toDelete))
             ->assertStatus(200);
         
-        $this->assertDatabaseMissing('equipment', ['id' => 1]);
+        $this->assertDatabaseMissing('equipment', $toDelete);
     }
 }
