@@ -35,7 +35,7 @@ class EquipmentControllerTest extends TestCase
     {
         $response = $this->json(
             'POST',
-            route('equipment.store'), 
+            route('equipment.store'),
             [
                 'make' => 'test make',
                 'model' => 'test model',
@@ -53,7 +53,7 @@ class EquipmentControllerTest extends TestCase
     {
         $this->json(
             'POST',
-            route('equipment.store'), 
+            route('equipment.store'),
             [
                 'year' => 'foo',
                 'rate' => '2000',
@@ -72,7 +72,7 @@ class EquipmentControllerTest extends TestCase
     public function testShow()
     {
         $this->json(
-            'GET', 
+            'GET',
             route('equipment.show', ['id' => 1])
         )
             ->assertStatus(200)
@@ -120,7 +120,7 @@ class EquipmentControllerTest extends TestCase
             ->assertStatus(422);
 
         $this->assertDatabaseMissing(
-            'equipment', 
+            'equipment',
             array_merge($toUpdate, $newValue)
         );
     }
@@ -135,7 +135,7 @@ class EquipmentControllerTest extends TestCase
         $toDelete = ['id' => 1];
 
         $this->json(
-            'DELETE', 
+            'DELETE',
             route('equipment.destroy', $toDelete)
         )
             ->assertStatus(200);

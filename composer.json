@@ -13,7 +13,8 @@
         "fzaninotto/faker": "~1.4",
         "laravel/homestead": "^4.0",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.7"
+        "phpunit/phpunit": "~5.7",
+        "squizlabs/php_codesniffer": "3.*"
     },
     "autoload": {
         "classmap": [
@@ -51,6 +52,10 @@
           "php artisan key:generate",
           "php artisan vendor:publish",
           "vagrant up"
+        ],
+        "ci": [
+          "./vendor/bin/phpcbf",
+          "./vendor/bin/phpunit"
         ]
     },
     "config": {
