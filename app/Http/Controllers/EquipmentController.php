@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Equipment;
+use App\Http\Requests\Equipment as EquipmentRequest;
+
 use Illuminate\Http\Request;
 
 class EquipmentController extends Controller
@@ -21,10 +23,10 @@ class EquipmentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\Equipment  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EquipmentRequest $request)
     {
         Equipment::create($request->all());
 
@@ -45,11 +47,11 @@ class EquipmentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\Equipment  $request
      * @param  \App\Equipment  $equipment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Equipment $equipment)
+    public function update(EquipmentRequest $request, Equipment $equipment)
     {
         $equipment->make = $request->has('make') ? $request->make : $equipment->make;
         $equipment->model = $request->has('model') ? $request->model : $equipment->model;

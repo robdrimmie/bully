@@ -18,9 +18,11 @@ class EquipmentControllerTest extends TestCase
      */
     public function testIndex()
     {
-        $response = $this->get(route('equipment.index'));
-
-        $response->assertStatus(200)
+        $response = $this->json(
+            'GET',
+            route('equipment.index')
+        )
+            ->assertStatus(200)
             ->assertJson([]);
     }
 
@@ -31,14 +33,35 @@ class EquipmentControllerTest extends TestCase
      */
     public function testStore()
     {
-        $response = $this->post(route('equipment.store'), [
-            'make' => 'test make',
-            'model' => 'test model',
-            'year' => Carbon::createFromDate(2005,1,1),
-            'rate' => 2000,
-            'picture' => 'test.png',
-        ])->assertStatus(201);
+        $response = $this->json(
+            'POST',
+            route('equipment.store'), 
+            [
+                'make' => 'test make',
+                'model' => 'test model',
+                'year' => '2005-01-01',
+                'rate' => 2000,
+                'picture' => 'test.png',
+            ]
+        )
+            ->assertStatus(201);
+
         $this->assertDatabaseHas('equipment', ['make' => 'test make']);
+    }
+
+    public function testStoreValidatesInput()
+    {
+        $this->json(
+            'POST',
+            route('equipment.store'), 
+            [
+                'year' => 'foo',
+                'rate' => '2000',
+            ]
+        )
+            ->assertStatus(422);
+
+        $this->assertDatabaseMissing('equipment', ['make' => 'test make']);
     }
 
     /**
@@ -48,7 +71,10 @@ class EquipmentControllerTest extends TestCase
      */
     public function testShow()
     {
-        $response = $this->get(route('equipment.show', ['id' => 1]))
+        $this->json(
+            'GET', 
+            route('equipment.show', ['id' => 1])
+        )
             ->assertStatus(200)
             ->assertJson(['make' => 'Caterpillar']);
     }
@@ -63,13 +89,40 @@ class EquipmentControllerTest extends TestCase
         $toUpdate = ['id' => 1];
         $newValue = ['make' => 'Butterfly'];
 
-        $response = $this->put(
+        $this->json(
+            'PUT',
             route('equipment.update', $toUpdate),
             $newValue
-        )->assertStatus(200);
+        )
+            ->assertStatus(200);
 
         $this->assertDatabaseHas('equipment', array_merge($toUpdate, $newValue));
+    }
 
+    /**
+     * Test updating the specified resource in storage.
+     *
+     * @return void
+     */
+    public function testUpdateValidatesInput()
+    {
+        $toUpdate = ['id' => 1];
+        $newValue = [
+            'year' => 'foo',
+            'rate' => '2000',
+        ];
+
+        $this->json(
+            'PUT',
+            route('equipment.update', $toUpdate),
+            $newValue
+        )
+            ->assertStatus(422);
+
+        $this->assertDatabaseMissing(
+            'equipment', 
+            array_merge($toUpdate, $newValue)
+        );
     }
 
     /**
@@ -81,7 +134,10 @@ class EquipmentControllerTest extends TestCase
     {
         $toDelete = ['id' => 1];
 
-        $response = $this->delete(route('equipment.destroy', $toDelete))
+        $this->json(
+            'DELETE', 
+            route('equipment.destroy', $toDelete)
+        )
             ->assertStatus(200);
         
         $this->assertDatabaseMissing('equipment', $toDelete);
