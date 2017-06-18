@@ -14,10 +14,6 @@ use App\Equipment;
 |
 */
 
-Route::get('/equipment', function (Request $request) {
-    return Response::json(Equipment::all(), 200, array(), JSON_PRETTY_PRINT);
-});
-
-Route::get('/equipment/{id}', function ($id) {
-    return Response::json(Equipment::findOrFail($id), 200, array(), JSON_PRETTY_PRINT);
-});
+Route::resource('equipment', 'EquipmentController', ['except' => [
+    'create', 'edit'
+]]);
