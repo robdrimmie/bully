@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const { array } = PropTypes;
+const { arrayOf, object } = PropTypes;
 
 const ImageGrid = ({ links }) => {
-  const images = links.map((link, i) => {
-    return (
-      <div key={i} className="fl-ns w-50-ns pa3">
-        <img src={`/images/${link}`} />
+  const images = links.map(link => (
+    (
+      <div key={link.id} className="fl-ns w-50-ns pa3">
+        <img src={`/images/${link}`} alt="" />
       </div>
-    );
-  });
+    )
+  ));
 
   return (
     <div className="cf">
@@ -20,7 +20,11 @@ const ImageGrid = ({ links }) => {
 };
 
 ImageGrid.propTypes = {
-  links: array
+  links: arrayOf(object),
+};
+
+ImageGrid.defaultProps = {
+  links: [],
 };
 
 export default ImageGrid;

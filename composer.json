@@ -55,6 +55,7 @@
           "vagrant up"
         ],
         "ci": [
+          "./node_modules/.bin/eslint resources/assets/js",
           "./vendor/bin/phpcbf",
           "./vendor/bin/phpunit"
         ]
