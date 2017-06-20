@@ -2,90 +2,59 @@ import React from 'react';
 import EquipmentListView from './components/Equipment/ListView';
 import EquipmentDetailView from './components/Equipment/DetailView';
 
-let equipment = [];
-const selected = null;
+class Main extends React.Component {
+  constructor() {
+    super();
 
-equipment = [
-  {
-    id: 1,
-    make: 'fake make',
-    model: 'fake model',
-    year: '2005-01-01',
-    picture: '',
-    rate: 5000,
-    created_at: '2005-01-01 03:03:03',
-    updated_at: '2005-01-01 03:03:03',
-  },
-  {
-    id: 2,
-    make: 'fake make',
-    model: 'fake model',
-    year: '2005-01-01',
-    picture: '',
-    rate: 5000,
-    created_at: '2005-01-01 03:03:03',
-    updated_at: '2005-01-01 03:03:03',
-  },
-  {
-    id: 3,
-    make: 'fake make',
-    model: 'fake model',
-    year: '2005-01-01',
-    picture: '',
-    rate: 5000,
-    created_at: '2005-01-01 03:03:03',
-    updated_at: '2005-01-01 03:03:03',
-  },
-  {
-    id: 4,
-    make: 'fake make',
-    model: 'fake model',
-    year: '2005-01-01',
-    picture: '',
-    rate: 5000,
-    created_at: '2005-01-01 03:03:03',
-    updated_at: '2005-01-01 03:03:03',
-  },
-  {
-    id: 5,
-    make: 'John Deere',
-    model: '450K2',
-    year: '2005-01-01',
-    picture: '6115M.jpg',
-    rate: 5000,
-    created_at: '2005-01-01 03:03:03',
-    updated_at: '2005-01-01 03:03:03',
-  },
-];
+    this.state = {
+      equipment: [],
+      selected: null,
+    };
+  }
 
-const Main = () => {
-  const content = selected ?
+  componentDidMount() {
+    // do API, setstate, etc.
+    global.fetch(
+      'http://starter.dozr.dev/api/equipment',
+    ).then(response => (
+      response.json()
+    )).then((equipment) => {
+      this.setState({
+        equipment,
+        selected: this.state.selected,
+      });
+    });
+  }
+
+  render() {
+    const content = this.state.selected ?
     (
       <EquipmentDetailView
-        selected={equipment[0]}
+        selected={this.state.equipment[this.state.selected]}
       />
     ) : (
       <EquipmentListView
-        equipment={equipment}
+        equipment={this.state.equipment}
       />
     );
 
-  return (
-    <div className="main">
-      <div>
-        <div className="mw9 center pt4">
-          <div className="main-head-logo pl4 pv2">
-            <img src="images/dozr_logo.svg" alt="DOZR" />
+    return (
+      <div className="main">
+        <div>
+          <div className="mw9 center pt4">
+            <div className="main-head-logo pl4 pv2">
+              <img src="images/dozr_logo.svg" alt="DOZR" />
+            </div>
+            <div className="bb b-light-grey mh4 mt1 mb4" />
           </div>
-          <div className="bb b-light-grey mh4 mt1 mb4" />
+        </div>
+
+        <div className="main-content">
+          {content}
         </div>
       </div>
-
-      <div className="main-content">
-        {content}
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Main;
