@@ -1,4 +1,5 @@
 import React from 'react';
+import Rate from './rate';
 
 const ListView = ({ equipment }) => {
   const details = equipment.map((unit) => {
@@ -14,14 +15,7 @@ const ListView = ({ equipment }) => {
       >
         <div className="ba b-light-grey bg-white pv0">
           <div className="relative bg-green cover bg-center aspect-ratio aspect-ratio--4x3" style={backgroundStyle}>
-            <div className="absolute bottom0 left0 bg-mid-grey o-40 mid-grey lh-title ma0 mw-50 pa1">
-              <span className="b f5">${unit.rate}</span>
-              <span className="f7">/mo</span>
-            </div>
-            <div className="absolute bottom0 left0 bg-transparent white lh-title ma0 mw-50 pa1">
-              <span className="b f5">${unit.rate}</span>
-              <span className="f7">/mo</span>
-            </div>
+            <Rate value={global.Math.ceil(unit.rate)} />
           </div>
           <div className="cf" />
           <div className="dark-grey bg-off-white ma0 pa3">
@@ -42,7 +36,11 @@ const ListView = ({ equipment }) => {
 };
 
 ListView.propTypes = {
-  equipment: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  equipment: React.PropTypes.arrayOf(React.PropTypes.object),
+};
+
+ListView.defaultProps = {
+  equipment: [],
 };
 
 export default ListView;
