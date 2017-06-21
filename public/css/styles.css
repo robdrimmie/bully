@@ -7837,6 +7837,9 @@ body {
 .b-green {
   border-color: #73c717;
 }
+.b-gold {
+  border-color: #ac9456;
+}
 .b-red {
   border-color: #c71717;
 }
@@ -7856,5 +7859,9 @@ body {
   Add custom styles here.
 
 */
+.btn-hover:hover {
+  color: #ffffff;
+  background-color: #ac9456;
+}
 
 /*# sourceMappingURL=styles.css.map */

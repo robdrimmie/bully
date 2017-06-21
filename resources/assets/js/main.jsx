@@ -8,7 +8,13 @@ class Main extends React.Component {
 
     this.state = {
       equipment: [],
-      selected: null,
+      selected: {
+        make: 'mock make',
+        model: 'mock model',
+        rate: 111111,
+        picture: '6115M.jpg',
+        year: '2005',
+      },
     };
 
     this.clicked = this.clicked.bind(this);
@@ -39,7 +45,7 @@ class Main extends React.Component {
     const content = this.state.selected ?
     (
       <EquipmentDetailView
-        selected={this.state.equipment[this.state.selected]}
+        unit={this.state.selected}
       />
     ) : (
       <EquipmentListView
@@ -60,7 +66,7 @@ class Main extends React.Component {
         </div>
 
         <div className="main-content">
-            {content}
+          {content}
         </div>
       </div>
     );

@@ -21,7 +21,10 @@ const ListItem = ({ clicked, index, unit }) => {
       tabIndex={index}
     >
       <div className="ba b-light-grey bg-white pv0 pointer">
-        <div className="relative bg-green cover bg-center aspect-ratio aspect-ratio--4x3" style={backgroundStyle}>
+        <div
+          className="relative bg-green cover bg-center aspect-ratio aspect-ratio--4x3"
+          style={backgroundStyle}
+        >
           <Rate value={global.Math.ceil(unit.rate)} />
         </div>
         <div className="cf" />
@@ -39,6 +42,7 @@ ListItem.propTypes = {
   unit: PropTypes.shape({
     make: PropTypes.string,
     model: PropTypes.string,
+    picture: PropTypes.string,
     rate: PropTypes.string,
   }).isRequired,
 };
