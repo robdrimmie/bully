@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Rate = ({ value }) => (
   <div>
@@ -14,7 +15,7 @@ const Rate = ({ value }) => (
 );
 
 Rate.propTypes = {
-  value: React.PropTypes.number,
+  value: PropTypes.number,
 };
 
 Rate.defaultProps = {

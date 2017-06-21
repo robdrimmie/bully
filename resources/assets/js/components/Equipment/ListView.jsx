@@ -1,28 +1,18 @@
 import React from 'react';
-import Rate from './rate';
+import PropTypes from 'prop-types';
+import ListItem from './ListItem';
 
-const ListView = ({ equipment }) => {
-  const details = equipment.map((unit) => {
-    const picture = unit.picture === '' ? 'noimage2.png' : unit.picture;
-    const backgroundStyle = {
-      backgroundImage: `url('images/${picture}')`,
-    };
-
+const ListView = ({ clicked, equipment }) => {
+  const details = equipment.map((unit, index) => {
     return (
-      <div
+      <ListItem
         key={unit.id}
+        unit={unit}
         className="fl w-100 w-25-ns pa2"
-      >
-        <div className="ba b-light-grey bg-white pv0">
-          <div className="relative bg-green cover bg-center aspect-ratio aspect-ratio--4x3" style={backgroundStyle}>
-            <Rate value={global.Math.ceil(unit.rate)} />
-          </div>
-          <div className="cf" />
-          <div className="dark-grey bg-off-white ma0 pa3">
-            {unit.make} {unit.model}
-          </div>
-        </div>
-      </div>
+        role="link"
+        clicked={clicked}
+        index={index}
+      />
     );
   });
 
@@ -36,7 +26,8 @@ const ListView = ({ equipment }) => {
 };
 
 ListView.propTypes = {
-  equipment: React.PropTypes.arrayOf(React.PropTypes.object),
+  clicked: PropTypes.func.isRequired,
+  equipment: PropTypes.arrayOf(PropTypes.object),
 };
 
 ListView.defaultProps = {
