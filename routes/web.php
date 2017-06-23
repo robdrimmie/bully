@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::any('{any?}', function($exception) {
+    return view('welcome');
+})->where('any', '.*');

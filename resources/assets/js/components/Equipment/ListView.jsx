@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import ListItem from './ListItem';
 
 const ListView = ({ clicked, equipment }) => {

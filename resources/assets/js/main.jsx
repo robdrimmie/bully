@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+} from 'react-router-dom';
+
 import EquipmentListView from './components/Equipment/ListView';
 import EquipmentDetailView from './components/Equipment/DetailView';
 
@@ -9,11 +15,11 @@ class Main extends React.Component {
     this.state = {
       equipment: [],
       selected: {
-        make: 'mock make',
-        model: 'mock model',
-        rate: 111111,
-        picture: '6115M.jpg',
-        year: '2005',
+        make: '',
+        model: '',
+        picture: '',
+        rate: '',
+        year: '',
       },
     };
 
@@ -42,33 +48,43 @@ class Main extends React.Component {
   }
 
   render() {
-    const content = this.state.selected ?
-    (
+    const detail = () => (
       <EquipmentDetailView
         unit={this.state.selected}
       />
-    ) : (
+    );
+
+    const list = () => (
       <EquipmentListView
         equipment={this.state.equipment}
         clicked={this.clicked}
       />
     );
 
+
     return (
-      <div className="main">
-        <div>
-          <div className="mw9 center pt4">
-            <div className="main-head-logo pl4 pv2">
-              <img src="images/dozr_logo.svg" alt="DOZR" />
+      <Router>
+        <div className="main">
+          <div>
+            <div className="mw9 center pt4">
+              <div className="main-head-logo pl4 pv2">
+                <Link
+                  className="link"
+                  to="/"
+                >
+                  <img src="images/dozr_logo.svg" alt="DOZR" />
+                </Link>
+              </div>
+              <div className="bb b-light-grey mh4 mt1 mb4" />
             </div>
-            <div className="bb b-light-grey mh4 mt1 mb4" />
+          </div>
+
+          <div className="main-content">
+            <Route exact path="/" render={list} />
+            <Route path="/equipment/:id" render={detail} />
           </div>
         </div>
-
-        <div className="main-content">
-          {content}
-        </div>
-      </div>
+      </Router>
     );
   }
 }

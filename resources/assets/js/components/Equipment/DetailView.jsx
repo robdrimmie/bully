@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const DetailView = ({ unit }) => {
   const picture = unit.picture === '' ? 'noimage2.png' : unit.picture;
   const backgroundStyle = {
-    backgroundImage: `url('images/${picture}')`,
+    backgroundImage: `url('/images/${picture}')`,
   };
 
   return (
@@ -43,7 +43,7 @@ DetailView.propTypes = {
     make: PropTypes.string,
     model: PropTypes.string,
     picture: PropTypes.string,
-    rate: PropTypes.number,
+    rate: PropTypes.string,
     year: PropTypes.string,
   }).isRequired,
 };
