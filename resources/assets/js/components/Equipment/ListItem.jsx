@@ -3,14 +3,11 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-
+import backgroundImage from './backgroundImage';
 import Rate from './Rate';
 
 const ListItem = ({ clicked, index, unit }) => {
-  const picture = unit.picture === '' ? 'noimage2.png' : unit.picture;
-  const backgroundStyle = {
-    backgroundImage: `url('images/${picture}')`,
-  };
+  const backgroundStyle = backgroundImage(unit.picture);
 
   const unitClicked = () => {
     clicked(unit);
