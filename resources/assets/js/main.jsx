@@ -24,19 +24,22 @@ class Main extends React.Component {
     };
 
     this.clicked = this.clicked.bind(this);
+    this.detail = this.detail.bind(this);
+    this.list = this.list.bind(this);
   }
 
   componentDidMount() {
-    // do API, setstate, etc.
     global.fetch(
       'http://starter.dozr.dev/api/equipment',
     ).then(response => (
       response.json()
     )).then((equipment) => {
-      this.setState({
-        equipment,
-        selected: this.state.selected,
-      });
+      this.setState(prevState => (
+        {
+          equipment,
+          selected: prevState.selected,
+        }
+      ));
     });
   }
 
@@ -47,21 +50,28 @@ class Main extends React.Component {
     });
   }
 
-  render() {
-    const detail = () => (
+  detail(params) {
+    const selected = this.state.equipment.find(unit => (
+      unit.id === parseInt(params.match.params.id, 10)
+    ));
+
+    return (
       <EquipmentDetailView
-        unit={this.state.selected}
+        unit={selected || this.state.selected}
       />
     );
+  }
 
-    const list = () => (
+  list() {
+    return (
       <EquipmentListView
         equipment={this.state.equipment}
         clicked={this.clicked}
       />
     );
+  }
 
-
+  render() {
     return (
       <Router>
         <div className="main">
@@ -72,7 +82,7 @@ class Main extends React.Component {
                   className="link"
                   to="/"
                 >
-                  <img src="images/dozr_logo.svg" alt="DOZR" />
+                  <img src="/images/dozr_logo.svg" alt="DOZR" />
                 </Link>
               </div>
               <div className="bb b-light-grey mh4 mt1 mb4" />
@@ -80,8 +90,8 @@ class Main extends React.Component {
           </div>
 
           <div className="main-content">
-            <Route exact path="/" render={list} />
-            <Route path="/equipment/:id" render={detail} />
+            <Route exact path="/" render={this.list} />
+            <Route path="/equipment/:id" render={this.detail} />
           </div>
         </div>
       </Router>
