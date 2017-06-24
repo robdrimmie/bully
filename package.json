@@ -47,6 +47,6 @@
     "type": "git",
     "url": "git+https://github.com/dozr/calc.git"
   },
-  "author": "",
+  "author": "Rob Drimmie",
   "license": "ISC"
 }
