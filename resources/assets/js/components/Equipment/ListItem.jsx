@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { Link } from 'react-router-dom';
+
+import backgroundImage from './backgroundImage';
 import Rate from './Rate';
 
 const ListItem = ({ clicked, index, unit }) => {
-  const picture = unit.picture === '' ? 'noimage2.png' : unit.picture;
-  const backgroundStyle = {
-    backgroundImage: `url('images/${picture}')`,
-  };
+  const backgroundStyle = backgroundImage(unit.picture);
 
   const unitClicked = () => {
     clicked(unit);
@@ -20,18 +21,23 @@ const ListItem = ({ clicked, index, unit }) => {
       onClick={unitClicked}
       tabIndex={index}
     >
-      <div className="ba b-light-grey bg-white pv0 pointer">
-        <div
-          className="relative bg-green cover bg-center aspect-ratio aspect-ratio--4x3"
-          style={backgroundStyle}
-        >
-          <Rate value={global.Math.ceil(unit.rate)} />
+      <Link
+        className="link"
+        to={`/equipment/${unit.id}`}
+      >
+        <div className="ba b-light-grey bg-white pv0 pointer">
+          <div
+            className="relative bg-green cover bg-center aspect-ratio aspect-ratio--4x3"
+            style={backgroundStyle}
+          >
+            <Rate value={global.Math.ceil(unit.rate)} />
+          </div>
+          <div className="cf" />
+          <div className="dark-grey bg-off-white ma0 pa3">
+            {unit.make} {unit.model}
+          </div>
         </div>
-        <div className="cf" />
-        <div className="dark-grey bg-off-white ma0 pa3">
-          {unit.make} {unit.model}
-        </div>
-      </div>
+      </Link>
     </div>
   );
 };

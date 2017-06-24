@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import backgroundImage from './backgroundImage';
+
 const DetailView = ({ unit }) => {
-  const picture = unit.picture === '' ? 'noimage2.png' : unit.picture;
-  const backgroundStyle = {
-    backgroundImage: `url('images/${picture}')`,
-  };
+  const backgroundStyle = backgroundImage(unit.picture);
 
   return (
     <div className="pl4">
@@ -43,7 +42,7 @@ DetailView.propTypes = {
     make: PropTypes.string,
     model: PropTypes.string,
     picture: PropTypes.string,
-    rate: PropTypes.number,
+    rate: PropTypes.string,
     year: PropTypes.string,
   }).isRequired,
 };

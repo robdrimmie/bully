@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+} from 'react-router-dom';
+
 import EquipmentListView from './components/Equipment/ListView';
 import EquipmentDetailView from './components/Equipment/DetailView';
 
@@ -9,28 +15,31 @@ class Main extends React.Component {
     this.state = {
       equipment: [],
       selected: {
-        make: 'mock make',
-        model: 'mock model',
-        rate: 111111,
-        picture: '6115M.jpg',
-        year: '2005',
+        make: '',
+        model: '',
+        picture: '',
+        rate: '',
+        year: '',
       },
     };
 
     this.clicked = this.clicked.bind(this);
+    this.detail = this.detail.bind(this);
+    this.list = this.list.bind(this);
   }
 
   componentDidMount() {
-    // do API, setstate, etc.
     global.fetch(
       'http://starter.dozr.dev/api/equipment',
     ).then(response => (
       response.json()
     )).then((equipment) => {
-      this.setState({
-        equipment,
-        selected: this.state.selected,
-      });
+      this.setState(prevState => (
+        {
+          equipment,
+          selected: prevState.selected,
+        }
+      ));
     });
   }
 
@@ -41,34 +50,51 @@ class Main extends React.Component {
     });
   }
 
-  render() {
-    const content = this.state.selected ?
-    (
+  detail(params) {
+    const selected = this.state.equipment.find(unit => (
+      unit.id === parseInt(params.match.params.id, 10)
+    ));
+
+    return (
       <EquipmentDetailView
-        unit={this.state.selected}
+        unit={selected || this.state.selected}
       />
-    ) : (
+    );
+  }
+
+  list() {
+    return (
       <EquipmentListView
         equipment={this.state.equipment}
         clicked={this.clicked}
       />
     );
+  }
 
+  render() {
     return (
-      <div className="main">
-        <div>
-          <div className="mw9 center pt4">
-            <div className="main-head-logo pl4 pv2">
-              <img src="images/dozr_logo.svg" alt="DOZR" />
+      <Router>
+        <div className="main">
+          <div>
+            <div className="mw9 center pt4">
+              <div className="main-head-logo pl4 pv2">
+                <Link
+                  className="link"
+                  to="/"
+                >
+                  <img src="/images/dozr_logo.svg" alt="DOZR" />
+                </Link>
+              </div>
+              <div className="bb b-light-grey mh4 mt1 mb4" />
             </div>
-            <div className="bb b-light-grey mh4 mt1 mb4" />
+          </div>
+
+          <div className="main-content">
+            <Route exact path="/" render={this.list} />
+            <Route path="/equipment/:id" render={this.detail} />
           </div>
         </div>
-
-        <div className="main-content">
-          {content}
-        </div>
-      </div>
+      </Router>
     );
   }
 }
