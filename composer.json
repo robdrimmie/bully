@@ -52,12 +52,13 @@
           "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
           "php artisan key:generate",
           "php artisan vendor:publish",
-          "vagrant up"
+          "vagrant up",
+          "composer ci"
         ],
         "ci": [
           "./node_modules/.bin/eslint resources/assets/js",
-          "./vendor/bin/phpcbf",
-          "./vendor/bin/phpunit"
+          "./vendor/bin/phpcbf --ignore=bootstrap/cache/services.php",
+          "vagrant ssh -- -t '/home/vagrant/bully/vendor/bin/phpunit /home/vagrant/bully/tests'"
         ]
     },
     "config": {

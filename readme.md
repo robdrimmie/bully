@@ -1,7 +1,11 @@
-starter
+Bully
 =======
 
-This is the starter template example for Dozr Job Interviews
+This is Rob Drimmie's solution to the Dozr Coding Challenge.
+
+The setup process is identical to the original starter (http://github.com/dozr/starter.git).
+
+To lint (js and php) and run tests, run `composer ci`.
 
 Setup
 =====
@@ -16,7 +20,7 @@ Required Software:
 
 To Setup:
 
-    > git clone git@github.com:dozr/starter.git
+    > git clone git@github.com:robdrimmie/bully.git
     > cd starter
     > composer up
 
@@ -41,6 +45,6 @@ Then you can point your browser to http://starter.dozr.dev
 
 You can start the dev server to automatically rebuild the project when files are changed.
 ```
-npm run dev 
+npm run dev
 ```
 
