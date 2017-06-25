@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import backgroundImage from './backgroundImage';
+import HoverOverlay from './HoverOverlay';
 import Rate from './Rate';
 
 const ListItem = ({ clicked, index, unit }) => {
@@ -35,6 +36,7 @@ const ListItem = ({ clicked, index, unit }) => {
             className="relative bg-green cover bg-center aspect-ratio aspect-ratio--4x3"
             style={backgroundStyle}
           >
+            <HoverOverlay />
             <Rate value={value} />
           </div>
           <div className="cf" />

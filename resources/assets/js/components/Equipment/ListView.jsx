@@ -4,18 +4,16 @@ import PropTypes from 'prop-types';
 import ListItem from './ListItem';
 
 const ListView = ({ clicked, equipment }) => {
-  const details = equipment.map((unit, index) => {
-    return (
-      <ListItem
-        key={unit.id}
-        unit={unit}
-        className="fl w-100 w-25-ns pa2"
-        role="link"
-        clicked={clicked}
-        index={index}
-      />
-    );
-  });
+  const details = equipment.map((unit, index) => (
+    <ListItem
+      key={unit.id}
+      unit={unit}
+      className="fl w-100 w-25-ns pa2"
+      role="link"
+      clicked={clicked}
+      index={index}
+    />
+  ));
 
   return (
     <div className="mw9 center ph3-ns">
