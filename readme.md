@@ -5,7 +5,7 @@ This is Rob Drimmie's solution to the Dozr Coding Challenge.
 
 The setup process is identical to the original starter (http://github.com/dozr/starter.git).
 
-To lint (js and php) and run tests, run `composer ci`.
+To lint (js and php) and run tests, run `composer ci` on the guest vm, or `composer ci-host` on the host.
 
 Setup
 =====
@@ -21,7 +21,7 @@ Required Software:
 To Setup:
 
     > git clone git@github.com:robdrimmie/bully.git
-    > cd starter
+    > cd bully
     > composer up
 
 Protip:
