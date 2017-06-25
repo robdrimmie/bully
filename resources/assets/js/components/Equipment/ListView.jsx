@@ -8,7 +8,6 @@ const ListView = ({ clicked, equipment }) => {
     <ListItem
       key={unit.id}
       unit={unit}
-      className="fl w-100 w-25-ns pa2"
       role="link"
       clicked={clicked}
       index={index}
@@ -16,10 +15,8 @@ const ListView = ({ clicked, equipment }) => {
   ));
 
   return (
-    <div className="mw9 center ph3-ns">
-      <div className="cf ph2-ns">
-        {details}
-      </div>
+    <div>
+      {details}
     </div>
   );
 };

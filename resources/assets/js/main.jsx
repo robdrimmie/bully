@@ -74,25 +74,28 @@ class Main extends React.Component {
   render() {
     return (
       <Router>
-        <div className="main">
-          <div>
-            <div className="mw9 center pt4">
-              <div className="main-head-logo pl4 pv2">
-                <Link
-                  className="link"
-                  to="/"
-                >
-                  <img src="/images/dozr_logo.svg" alt="DOZR" />
-                </Link>
-              </div>
-              <div className="bb b-light-grey mh4 mt1 mb4" />
+        <div>
+
+          <div className="pt4 ph3">
+            <div className="">
+              <Link
+                className="link"
+                to="/"
+              >
+                <img
+                  src="/images/dozr_logo.svg"
+                  alt="DOZR"
+                />
+              </Link>
             </div>
+            <div className="bb b-light-grey mv3" />
           </div>
 
-          <div className="main-content">
+          <div className="pa2">
             <Route exact path="/" render={this.list} />
             <Route path="/equipment/:id" render={this.detail} />
           </div>
+
         </div>
       </Router>
     );

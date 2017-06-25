@@ -7,7 +7,7 @@ const HoverOverlay = () => (
       className="aspect-ratio--object dt"
     >
       <div className="dtc v-mid white o-100" >
-        <div className="ba w-50 b-white center ph2 pv2 tc">
+        <div className="ba w-50 b-white center ph2 pv2 tc br1">
           View Details
         </div>
       </div>
