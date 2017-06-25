@@ -13,6 +13,11 @@ const ListItem = ({ clicked, index, unit }) => {
     clicked(unit);
   };
 
+  // If the rate has cents, show them. Otherwise show whole number.
+  const value = unit.rate % 1 ?
+    global.Number(unit.rate).toFixed(2) :
+    global.Number(unit.rate).toFixed(0);
+
   return (
     <div
       key={unit.id}
@@ -30,7 +35,7 @@ const ListItem = ({ clicked, index, unit }) => {
             className="relative bg-green cover bg-center aspect-ratio aspect-ratio--4x3"
             style={backgroundStyle}
           >
-            <Rate value={global.Math.ceil(unit.rate)} />
+            <Rate value={value} />
           </div>
           <div className="cf" />
           <div className="dark-grey bg-off-white ma0 pa3">
