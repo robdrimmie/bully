@@ -17,7 +17,7 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        return Equipment::all();
+        return Equipment::orderBy('rate', 'desc')->get();
     }
 
     /**
