@@ -53,12 +53,19 @@
           "php artisan key:generate",
           "php artisan vendor:publish",
           "vagrant up",
-          "composer ci"
+          "composer ci-host"
+        ],
+        "ci-common": [
+          "./node_modules/.bin/eslint resources/assets/js",
+          "./vendor/bin/phpcbf --ignore=bootstrap/cache/services.php"
+        ],
+        "ci-host": [
+            "composer ci-common",
+            "vagrant ssh -- -t '/home/vagrant/bully/vendor/bin/phpunit /home/vagrant/bully/tests'"
         ],
         "ci": [
-          "./node_modules/.bin/eslint resources/assets/js",
-          "./vendor/bin/phpcbf --ignore=bootstrap/cache/services.php",
-          "vagrant ssh -- -t '/home/vagrant/bully/vendor/bin/phpunit /home/vagrant/bully/tests'"
+            "composer ci-common",
+            "./vendor/bin/phpunit"
         ]
     },
     "config": {
