@@ -15,7 +15,7 @@ const Rate = ({ value }) => (
 );
 
 Rate.propTypes = {
-  value: PropTypes.number,
+  value: PropTypes.string,
 };
 
 Rate.defaultProps = {
